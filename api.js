@@ -1,14 +1,15 @@
 // https://dog.ceo/api/breeds/image/random
-const imgLink = "https://dog.ceo/api/breeds/image/random";
 
-fetch(imgLink)
-  .then((response) => response.json())
-  .then((data) => appendImg(data.message));
+const btn = document.querySelector(".btn");
+const bored = "https://apis.scrimba.com/bored/api/activity";
 
-const img = document.querySelector(".img");
-const main = document.querySelector(".main");
+function getActivity() {
+  fetch(bored)
+    .then((response) => response.json())
+    .then(
+      (data) =>
+        (document.querySelector(".random-idea").textContent = data.activity)
+    );
+}
 
-const appendImg = function (imgSrc) {
-  img.src = imgSrc;
-  return main.append(img);
-};
+btn.addEventListener("click", getActivity);
